@@ -17,39 +17,41 @@ var src = decodeURIComponent(document.getElementById("sh-tracking-widget").child
 //var carrier = carrier ? src.split("carrier=")[1].split("&")[0] : null;
 //var tracking = src.split("tracking=")[1].split("&")[0] || null;
 
+let getAppState = () => {
+    return {
+      //tracking: null,
+      shipment: Store.getShipment(),
+      //shipmentId: this._getShipmentID(),
+      //apiKey: this._getApiKey()
+    };
+  };
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.state = getAppState();
     console.log('PROPS', this.props);
-    this.state = {
-      shipment: null,
-      tracking: null,
-      shipmentId: this._getShipmentID(),
-      apiKey: this._getApiKey()
-    };
   }
 
 
   componentWillMount () {
     Store.addChangeListener(this._onChange.bind(this));
-    ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
-    this.updateState();
   }
 
   componentDidMount() {
-    this.updateState();
+    ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
   }
 
   componentWillUnmount () {
     Store.removeChangeListener(this._onChange.bind(this));
   }
 
-  updateState() {
-    this.setState({
-      shipment: Store.getShipment(),
-      tracking: Store.getTracking()
-    });
-  }
+  // updateState() {
+  //   this.setState({
+  //     shipment: Store.getShipment(),
+  //     tracking: Store.getTracking()
+  //   });
+  // }
 
   _onChange() {
     this.setState({
@@ -72,7 +74,7 @@ class AppComponent extends React.Component {
     return (
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generators"/>
-        <div className="notice">{this.props.apiKey}<code>src/components/Main.js</code> {this.props.shipmentID} Alex C Hawkins</div>
+        <div className="notice">{this.props.apiKey}<code>src/components/Main.js</code> {this.state.shipmentID} Alex C Hawkins</div>
         <ShipmentDetailsContainer shipment={this.state.shipment} tracking={this.state.tracking}/>
       </div>
     );
@@ -89,4 +91,3 @@ class AppComponent extends React.Component {
 
 
 export default AppComponent;
-

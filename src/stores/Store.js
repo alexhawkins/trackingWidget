@@ -7,34 +7,40 @@ var ActionTypes = AppConstants.ActionTypes;
 
 var CHANGE_EVENT = "change";
 
-var _shipment = {};
-var _tracking = {};
+var _shipment = [];
+var _tracking = [];
 
 var setShipment = (data) => {
-  _shipment = data;
-  console.log('SHIPMENT SET', data);
+  _shipment.push(data);
+  // console.log('SHIPMENT SET, _shipment', _shipment);
 };
 
 var setTracking = (data) => {
-  _tracking = data;
-  console.log('TRACKING SET', data);
+  _tracking.push(data);
+  // console.log('TRACKING SET', data);
 };
 
 var Store = assign({}, EventEmitter.prototype, {
 
   emitChange: function() {
+    //console.log('emitChange');
     this.emit(CHANGE_EVENT);
   },
 
   addChangeListener: function(callback) {
+    //console.log('addChangeListener');
     this.on(CHANGE_EVENT, callback);
   },
 
   removeChangeListener: function(callback) {
+  //  console.log('removeChangeListener');
     this.removeListener(CHANGE_EVENT, callback);
   },
 
   getShipment: function() {
+    setShipment();
+    // console.log('I am getting called!');
+    // console.log('after getting called!', _shipment);
     return _shipment;
   },
 
@@ -46,7 +52,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
 
 Store.dispatchToken = AppDispatcher.register(function(action) {
-  console.log('ACTION', action);
+  // console.log('ACTION', action);
   switch (action.type) {
 
     case ActionTypes.GET_SHIPMENT:
