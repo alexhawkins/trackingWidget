@@ -32,23 +32,14 @@ class AppComponent extends React.Component {
 
   componentWillMount () {
     Store.addChangeListener(this._onChange.bind(this));
-    ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
-    this.updateState();
   }
 
   componentDidMount() {
-    this.updateState();
+    ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
   }
 
   componentWillUnmount () {
     Store.removeChangeListener(this._onChange.bind(this));
-  }
-
-  updateState() {
-    this.setState({
-      shipment: Store.getShipment(),
-      tracking: Store.getTracking()
-    });
   }
 
   _onChange() {
