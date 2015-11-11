@@ -65,7 +65,7 @@ class AppComponent extends React.Component {
     return (
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generators"/>
-        <div className="notice">{this.props.apiKey}<code>src/components/Main.js</code> {this.state.shipmentID} Alex C Hawkins</div>
+        <div className="notice">{this.state.apiKey}<code>src/components/Main.js</code> {this.state.shipmentId} Alex C Hawkins</div>
         <ShipmentDetailsContainer shipment={this.state.shipment} tracking={this.state.tracking}/>
       </div>
     );
