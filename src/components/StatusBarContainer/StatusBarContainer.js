@@ -4,11 +4,16 @@ import React from 'react';
 
 require('styles//StatusBarContainer.scss');
 
-let StatusBarContainer = (props) => (
-  <div className="statusbar-Container">
-
-  </div>
-);
+class StatusBarContainer extends React.Component {
+  render() {
+    console.log('Status Bar Container', this.props.details);
+    return (
+      <div className="StatusBar-component">
+        {this.props.details.bol}
+      </div>
+    );
+  }
+}
 
 StatusBarContainer.displayName = 'StatusBarContainer';
 
