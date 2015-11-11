@@ -12,14 +12,16 @@ import Address from './AddressComponent';
 class ShipmentDetailsContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log('PROPS', this.props);
+    console.log('PROPS SHIP', props);
+    console.log('PROPS TRACKING', props);
+
   }
 
   render() {
 
     return (
       <div className="address-component">
-        <Address shipment={this.props} />
+        <Address shipment={this.props.shipment} />
       </div>
     );
   }

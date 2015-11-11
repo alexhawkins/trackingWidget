@@ -7,17 +7,15 @@ var ActionTypes = AppConstants.ActionTypes;
 
 var CHANGE_EVENT = "change";
 
-var _shipment = {};
-var _tracking = {};
+var _shipment = [];
+var _tracking = [];
 
 var setShipment = (data) => {
-  _shipment = data;
-  console.log('SHIPMENT SET', data);
+  _shipment.push(data);
 };
 
 var setTracking = (data) => {
-  _tracking = data;
-  console.log('TRACKING SET', data);
+  _tracking.push(data);
 };
 
 var Store = assign({}, EventEmitter.prototype, {
@@ -46,7 +44,7 @@ var Store = assign({}, EventEmitter.prototype, {
 
 
 Store.dispatchToken = AppDispatcher.register(function(action) {
-  console.log('ACTION', action);
+  // console.log('ACTION', action);
   switch (action.type) {
 
     case ActionTypes.GET_SHIPMENT:

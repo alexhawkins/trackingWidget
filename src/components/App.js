@@ -17,18 +17,21 @@ var src = decodeURIComponent(document.getElementById("sh-tracking-widget").child
 //var carrier = carrier ? src.split("carrier=")[1].split("&")[0] : null;
 //var tracking = src.split("tracking=")[1].split("&")[0] || null;
 
+
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
-    console.log('PROPS', this.props);
-    this.state = {
-      shipment: null,
-      tracking: null,
+    this.state = this.getAppState();
+  }
+
+  getAppState() {
+    return {
+      tracking: Store.getTracking(),
+      shipment: Store.getShipment(),
       shipmentId: this._getShipmentID(),
       apiKey: this._getApiKey()
     };
   }
-
 
   componentWillMount () {
     Store.addChangeListener(this._onChange.bind(this));
@@ -47,7 +50,6 @@ class AppComponent extends React.Component {
       shipment: Store.getShipment(),
       tracking: Store.getTracking()
     });
-    console.log('STATE CHANGE', this.state.shipment);
   }
 
   _getApiKey() {
@@ -63,7 +65,7 @@ class AppComponent extends React.Component {
     return (
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generators"/>
-        <div className="notice">{this.props.apiKey}<code>src/components/Main.js</code> {this.props.shipmentID} Alex C Hawkins</div>
+        <div className="notice">{this.props.apiKey}<code>src/components/Main.js</code> {this.state.shipmentID} Alex C Hawkins</div>
         <ShipmentDetailsContainer shipment={this.state.shipment} tracking={this.state.tracking}/>
       </div>
     );
@@ -80,4 +82,3 @@ class AppComponent extends React.Component {
 
 
 export default AppComponent;
-
