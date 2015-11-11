@@ -21,28 +21,18 @@ class AppComponent extends React.Component {
   constructor(props) {
     super(props);
     console.log('PROPS', this.props);
-    this.state.shipments = {};
-    this.state.tracking = {};
-    this.state.shipmentId = this._getShipmentID();
-    this.state.apiKey = this._getApiKey();
+    this.state = {
+      shipment: null,
+      tracking: null,
+      shipmentId: this._getShipmentID(),
+      apiKey: this._getApiKey()
+    };
   }
 
-  //constructor(props) {
-  //  super(props);
-  //
-  //  //var deliveryAddress = shipment.delivery.address;
-  //  //var pickupAddress = shipment.pickup.address;
-  //  //let details = shipment.details;
-  //  //let packing = shipment.packing;
-  //  this.state = {
-  //    shipments: null,
-  //    tracking: null
-  //  };
-  //}
 
   componentWillMount () {
     Store.addChangeListener(this._onChange.bind(this));
-    ShipmentActions.getShipmentAndTracking(this.state.shipmentId,this.state.apiKey);
+    ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
     this.updateState();
   }
 
@@ -77,18 +67,17 @@ class AppComponent extends React.Component {
     return src.split("id=")[1].split("&")[0] || null;
   }
 
-
   render() {
-    if (!this.state.shipment) return <div>Loading ...</div>;
+    //if (!this.state.shipment) return <div>Loading ...</div>;
     return (
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generators"/>
         <div className="notice">{this.props.apiKey}<code>src/components/Main.js</code> {this.props.shipmentID} Alex C Hawkins</div>
-        <ShipmentDetailsContainer shipment={shipment} tracking={tracking}/>
+        <ShipmentDetailsContainer shipment={this.state.shipment} tracking={this.state.tracking}/>
       </div>
     );
   }
-});
+}
 
 
 
@@ -99,5 +88,5 @@ class AppComponent extends React.Component {
 //};
 
 
-export default App;
+export default AppComponent;
 
