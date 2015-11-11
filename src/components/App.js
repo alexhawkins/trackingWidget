@@ -13,21 +13,19 @@ let yeomanImage = require('../images/yeoman.png');
 
 
 var src = decodeURIComponent(document.getElementById("sh-tracking-widget").children[0].src);
-var props = {
-  apiKey: getApiKey(),
-  shipmentId: getShipmentID()
-};
+
 //var carrier = carrier ? src.split("carrier=")[1].split("&")[0] : null;
 //var tracking = src.split("tracking=")[1].split("&")[0] || null;
 
-var App = React.createClass({
-
-  getInitialState: function() {
-    return {
-      shipments: {},
-      tracking: {}
-    };
-  },
+class AppComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log('PROPS', this.props);
+    this.state.shipments = {};
+    this.state.tracking = {};
+    this.state.shipmentId = this._getShipmentID();
+    this.state.apiKey = this._getApiKey();
+  }
 
   //constructor(props) {
   //  super(props);
@@ -42,28 +40,26 @@ var App = React.createClass({
   //  };
   //}
 
-  componentWillMount: function() {
+  componentWillMount () {
     Store.addChangeListener(this._onChange.bind(this));
-    let shipmentId = props.shipmentId;
-    let apiKey = props.apiKey;
-    ShipmentActions.getShipmentAndTracking(shipmentId,apiKey);
+    ShipmentActions.getShipmentAndTracking(this.state.shipmentId,this.state.apiKey);
     this.updateState();
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount() {
     this.updateState();
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount () {
     Store.removeChangeListener(this._onChange.bind(this));
-  },
+  }
 
   updateState() {
     this.setState({
       shipment: Store.getShipment(),
       tracking: Store.getTracking()
     });
-  },
+  }
 
   _onChange() {
     this.setState({
@@ -71,13 +67,19 @@ var App = React.createClass({
       tracking: Store.getTracking()
     });
     console.log('STATE CHANGE', this.state.shipment);
-  },
+  }
+
+  _getApiKey() {
+    return src.split("token=")[1].split("&")[0] || null;
+  }
+
+  _getShipmentID() {
+    return src.split("id=")[1].split("&")[0] || null;
+  }
 
 
   render() {
-    var shipment = Store.getShipment();
-    var tracking = Store.getShipment();
-    if (!shipment) return <div>Loading ...</div>;
+    if (!this.state.shipment) return <div>Loading ...</div>;
     return (
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generators"/>
@@ -88,13 +90,7 @@ var App = React.createClass({
   }
 });
 
-function getApiKey() {
-  return src.split("token=")[1].split("&")[0] || null;
-}
 
-function getShipmentID() {
-  return src.split("id=")[1].split("&")[0] || null;
-}
 
 
 //AppComponent.propTypes = {
