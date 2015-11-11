@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
-import TrackingComponent from './TrackingComponent';
-
-class TrackingDetailsContainer extends Component <{}, {}, {}> {
+class TrackingDetailsContainer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -11,9 +9,6 @@ class TrackingDetailsContainer extends Component <{}, {}, {}> {
   render() {
     return (
       <div>
-        <Tracking
-          tracking={this.state.status}
-        />
       </div>
     );
   }

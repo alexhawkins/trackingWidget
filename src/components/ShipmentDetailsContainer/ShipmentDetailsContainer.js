@@ -12,16 +12,13 @@ import Address from './AddressComponent';
 class ShipmentDetailsContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log('PROPS SHIP', props.details);
-    console.log('PROPS TRACKING', props.status_updates[0]);
+    console.log('PROPS SHIP', props.pickup);
   }
 
   render() {
 
     return (
       <div className="address-component">
-        <Address shipment={this.props.shipment} />
-        {this.props.status_updates[0].time}
       </div>
     );
   }

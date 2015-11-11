@@ -7,9 +7,7 @@ import Store            from '../stores/Store';
 import ShipmentActions  from '../actions/ShipmentActions';
 import ShipmentDetailsContainer from './ShipmentDetailsContainer/ShipmentDetailsContainer';
 import StatusBarContainer from './StatusBarContainer/StatusBarContainer';
-
-// import StatusBarContainer from './ShipmentDetailsContainer/StatusBarComponent';
-//import TrackingDetailsContainer from './TrackingDetailsContainer/TrackingDetailsContainer';
+import TrackingDetailsContainer from './TrackingDetailsContainer/TrackingDetailsContainer';
 
 
 let yeomanImage = require('../images/yeoman.png');
@@ -70,7 +68,9 @@ class AppComponent extends React.Component {
         <p>allala</p>
         <StatusBarContainer {...this.state.shipment[0]} />
         <p>allala</p>
-        <ShipmentDetailsContainer {...this.state.shipment[0]} {...this.state.tracking[0]}/>
+        <ShipmentDetailsContainer {...this.state.shipment[0]} />
+        <p>allala</p>
+        <TrackingDetailsContainer {...this.state.tracking[0]}/>
       </div>
     );
   }

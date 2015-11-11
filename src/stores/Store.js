@@ -1,70 +1,74 @@
 import AppDispatcher from "../dispatcher/AppDispatcher";
-import AppConstants  from "../constants/AppConstants";
-
+import AppConstants from "../constants/AppConstants";
 var assign = require('object.assign');
-var EventEmitter = require("events").EventEmitter;
-var ActionTypes = AppConstants.ActionTypes;
+import EventEmitter from 'events';
 
+var ActionTypes = AppConstants.ActionTypes;
 var CHANGE_EVENT = "change";
 
 var _shipment = [];
 var _tracking = [];
 
-var setShipment = (data) => {
-  _shipment.push(data);
-};
+function reset() {
+  _shipment = [];
+  _tracking = [];
+}
 
-var setTracking = (data) => {
-  _tracking.push(data);
-};
+class Store extends EventEmitter {
+  constructor() {
+    super();
+  }
 
-var Store = assign({}, EventEmitter.prototype, {
-
-  emitChange: function() {
+  emitChange() {
     this.emit(CHANGE_EVENT);
-  },
+  }
 
-  addChangeListener: function(callback) {
+  addChangeListener(callback) {
     this.on(CHANGE_EVENT, callback);
-  },
+  }
 
-  removeChangeListener: function(callback) {
+  removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
-  },
+  }
 
-  getShipment: function() {
+  getShipment() {
     return _shipment;
-  },
+  }
 
-  getTracking: function() {
+  getTracking() {
     return _tracking;
   }
 
-});
+  setShipment(data) {
+    _shipment.push(data);
+  }
 
+  setTracking(data) {
+    _tracking.push(data);
+  }
+}
 
-Store.dispatchToken = AppDispatcher.register(function(action) {
-  // console.log('ACTION', action);
+let storeInstance = new Store();
+storeInstance.dispatchToken = AppDispatcher.register((action) => {
   switch (action.type) {
-
     case ActionTypes.GET_SHIPMENT:
-      setShipment(action.data);
-      Store.emitChange();
+      reset();
+      storeInstance.setShipment(action.data);
       break;
-
     case ActionTypes.GET_TRACKING:
-      setTracking(action.data);
-      Store.emitChange();
+      reset();
+      storeInstance.setTracking(action.data);
+      break;
+    case ActionTypes.GET_SHIPMENT_AND_TRACKING:
+      reset();
+      storeInstance.setShipment(action.shipment);
+      storeInstance.setTracking(action.tracking);
       break;
     default:
+      return;  // do nothing
 
-    case ActionTypes.GET_SHIPMENT_AND_TRACKING:
-      setShipment(action.shipment);
-      setTracking(action.tracking);
-      Store.emitChange();
-      break;
-    // do nothing
   }
+  storeInstance.emitChange();
 });
 
-export default Store;
+export default storeInstance; 
