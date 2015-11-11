@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>React Webpack Template Title</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+  <div id="app">APPLICATION CONTENT</div>
+
+  <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
+  <div id="sh-tracking-widget">
+    <script data-version='v1' data-widget-id='dotAndBo' id='shiphawk-embedder-id' type='text/javascript'>
+      (function() {
+        function async_load() {
+          var s = document.createElement('script'),
+            payloadURL,
+            embedder,
+            shipmentID,
+            apiKey,
+            carrier,
+            trackingNum;
+
+          /********************************************************
+          * set custom vars, set to an empty string if not using var */
+
+          shipmentID = '1070430';
+          apiKey = 'e04bb36e4633aabf07a9e94374ace7e0';
+          carrier = '';
+          trackingNum = '';
+
+          /********************************************************/
+
+          s.type = 'text/javascript';
+          s.async = true;
+          payloadURL = 'assets/app.js';
+          s.src = payloadURL + '?' + encodeURIComponent('token=' + apiKey + '&' + 'id=' + shipmentID + '&' + 'carier=' + carrier + 'tracking=' + trackingNum);
+          embedder = document.getElementById('shiphawk-embedder-id');
+          embedder.parentNode.insertBefore(s, embedder);
+        }
+        if (window.attachEvent)
+          window.attachEvent('onload', async_load);
+        else
+          window.addEventListener('load', async_load, false);
+      })();
+    </script>
+  </div>
+
+</body>
+
+</html>
