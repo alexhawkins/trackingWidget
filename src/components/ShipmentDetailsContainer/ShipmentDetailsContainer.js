@@ -14,7 +14,6 @@ class ShipmentDetailsContainer extends React.Component {
     super(props);
     console.log('PROPS SHIP', props);
     console.log('PROPS TRACKING', props);
-
   }
 
   render() {

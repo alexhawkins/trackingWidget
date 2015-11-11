@@ -6,6 +6,9 @@ import createFragment   from 'react-addons-create-fragment';
 import Store            from '../stores/Store';
 import ShipmentActions  from '../actions/ShipmentActions';
 import ShipmentDetailsContainer from './ShipmentDetailsContainer/ShipmentDetailsContainer';
+import StatusBarComponent from './StatusBarComponent';
+
+// import StatusBarContainer from './ShipmentDetailsContainer/StatusBarComponent';
 //import TrackingDetailsContainer from './TrackingDetailsContainer/TrackingDetailsContainer';
 
 
@@ -66,6 +69,7 @@ class AppComponent extends React.Component {
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generators"/>
         <div className="notice">{this.state.apiKey}<code>src/components/Main.js</code> {this.state.shipmentId} Alex C Hawkins</div>
+        <StatusBarComponent shipment={this.state.shipment} />
         <ShipmentDetailsContainer shipment={this.state.shipment} tracking={this.state.tracking}/>
       </div>
     );
