@@ -1,76 +1,41 @@
-require('babel/polyfill');
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import baseConfig from './base.config';
 
-// Webpack config for creating the production bundle.
-var path = require('path');
-var webpack = require('webpack');
-var CleanPlugin = require('clean-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var strip = require('strip-loader');
+// clean `.tmp` && `dist`
+require('./utils/clean-dist')();
 
-var relativeAssetsPath = '../static/dist';
-var assetsPath = path.join(__dirname, relativeAssetsPath);
-
-// https://github.com/halt-hammerzeit/webpack-isomorphic-tools
-var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
-
-module.exports = {
-  devtool: 'source-map',
-  context: path.resolve(__dirname, '..'),
-  entry: {
-    'main': [
-      'bootstrap-sass!./src/theme/bootstrap.config.prod.js',
-      'font-awesome-webpack!./src/theme/font-awesome.config.prod.js',
-      './src/client.js'
-    ]
-  },
-  output: {
-    path: assetsPath,
-    filename: '[name]-[chunkhash].js',
-    chunkFilename: '[name]-[chunkhash].js',
-    publicPath: '/dist/'
-  },
+export default {
+  ...baseConfig,
   module: {
+    ...baseConfig.module,
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel']},
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
-      { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
-      { test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file" },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
-      { test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240' }
+      ...baseConfig.module.loaders,
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)(\?v=[0-9].[0-9].[0-9])?$/,
+        loader: 'file?name=[sha512:hash:base64:7].[ext]',
+        exclude: /node_modules\/(?!font-awesome)/
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: 'file?name=[sha512:hash:base64:7].[ext]!image?optimizationLevel=7&progressive&interlaced',
+        exclude: /node_modules\/(?!font-awesome)/
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss'),
+        exclude: /node_modules/
+      }
     ]
-  },
-  progress: true,
-  resolve: {
-    modulesDirectories: [
-      'src',
-      'node_modules'
-    ],
-    extensions: ['', '.json', '.js']
   },
   plugins: [
-    new CleanPlugin([relativeAssetsPath]),
+    // extract css
+    new ExtractTextPlugin('[name]-[chunkhash].css'),
 
-    // css files from the extract-text-plugin loader
-    new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
-    new webpack.DefinePlugin({
-      __CLIENT__: true,
-      __SERVER__: false,
-      __DEVELOPMENT__: false,
-      __DEVTOOLS__: false
-    }),
-
-    // ignore dev config
-    new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
-
-    // set global vars
+    // set env
     new webpack.DefinePlugin({
       'process.env': {
-        // Useful to reduce the size of client-side libraries, e.g. react
+        BROWSER: JSON.stringify(true),
         NODE_ENV: JSON.stringify('production')
       }
     }),
@@ -80,10 +45,28 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
+        screw_ie8: true,
+        sequences: true,
+        dead_code: true,
+        drop_debugger: true,
+        comparisons: true,
+        conditionals: true,
+        evaluate: true,
+        booleans: true,
+        loops: true,
+        unused: true,
+        hoist_funs: true,
+        if_return: true,
+        join_vars: true,
+        cascade: true,
+        drop_console: true
+      },
+      output: {
+        comments: false
       }
     }),
 
-    webpackIsomorphicToolsPlugin
+    ...baseConfig.plugins
   ]
 };

@@ -1,7 +1,10 @@
-.idea/
-node_modules/
-dist/
-*.iml
-webpack-assets.json
-webpack-stats.json
+**/webpack-stats.json
+coverage
+node_modules
 npm-debug.log
+dist
+.tmp
+.DS_Store
+.sass-cache
+.env
+.c9
