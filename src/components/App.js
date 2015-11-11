@@ -36,12 +36,13 @@ class AppComponent extends React.Component {
     };
   }
 
-  componentWillMount () {
-    Store.addChangeListener(this._onChange.bind(this));
-  }
+  // componentWillMount () {
+  //   Store.addChangeListener(this._onChange.bind(this));
+  // }
 
   componentDidMount() {
     ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
+    Store.addChangeListener(this._onChange.bind(this));
   }
 
   componentWillUnmount () {
@@ -49,10 +50,7 @@ class AppComponent extends React.Component {
   }
 
   _onChange() {
-    this.setState({
-      shipment: Store.getShipment(),
-      tracking: Store.getTracking()
-    });
+    this.setState(this.getAppState());
   }
 
   _getApiKey() {
@@ -64,7 +62,7 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    //if (!this.state.shipment) return <div>Loading ...</div>;
+    if (!this.state.shipment[0] && !this.state.tracking[0]) return <div>Loading ...</div>;
     return (
       <div className="index">
         <img src={yeomanImage} alt="Yeoman Generators"/>
@@ -72,7 +70,7 @@ class AppComponent extends React.Component {
         <p>allala</p>
         <StatusBarContainer {...this.state.shipment[0]} />
         <p>allala</p>
-        <ShipmentDetailsContainer shipment={this.state.shipment} tracking={this.state.tracking}/>
+        <ShipmentDetailsContainer {...this.state.shipment[0]} {...this.state.tracking[0]}/>
       </div>
     );
   }

@@ -12,8 +12,8 @@ import Address from './AddressComponent';
 class ShipmentDetailsContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log('PROPS SHIP', props);
-    console.log('PROPS TRACKING', props);
+    console.log('PROPS SHIP', props.details);
+    console.log('PROPS TRACKING', props.status_updates[0]);
   }
 
   render() {
@@ -21,6 +21,7 @@ class ShipmentDetailsContainer extends React.Component {
     return (
       <div className="address-component">
         <Address shipment={this.props.shipment} />
+        {this.props.status_updates[0].time}
       </div>
     );
   }
