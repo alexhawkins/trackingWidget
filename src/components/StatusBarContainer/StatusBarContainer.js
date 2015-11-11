@@ -1,8 +1,7 @@
 'use strict';
 
 import React from 'react';
-
-require('styles//StatusBarContainer.scss');
+import 'styles//StatusBarContainer.scss';
 
 class StatusBarContainer extends React.Component {
   render() {

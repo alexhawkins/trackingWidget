@@ -1,8 +1,7 @@
 'use strict';
 
 import React from 'react';
-
-require('styles//StatusNodeComponent.scss');
+import 'styles//StatusNodeComponent.scss';
 
 let StatusNodeComponent = (props) => (
   <div className="statusbar-Container">

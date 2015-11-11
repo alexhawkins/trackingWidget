@@ -1,24 +1,21 @@
-require('styles//ShipmentDetailsContainer.scss');
-
-import createFragment from 'react-addons-create-fragment';
+import 'styles//ShipmentDetailsContainer.scss';
 
 import React from 'react';
-
-import Address from './AddressComponent';
-//import Carriers from './CarrierComponent';
-//import Packages from './PackagesComponent';
+import ShipmentDetails  from './ShipmentDetailsComponent';
+import ShipmentStatus   from './ShipmentStatusComponent';
 
 
 class ShipmentDetailsContainer extends React.Component {
   constructor(props) {
     super(props);
-    console.log('PROPS SHIP', props.pickup);
   }
 
   render() {
-
+    let shipment = this.props.shipment;
     return (
-      <div className="address-component">
+      <div className="shipmentdetailscontainer">
+        <ShipmentStatus status={shipment.details.status} />
+        <ShipmentDetails shipment={shipment}/>
       </div>
     );
   }
@@ -27,8 +24,7 @@ class ShipmentDetailsContainer extends React.Component {
 ShipmentDetailsContainer.displayName = 'ShipmentDetailsContainer';
 
 ShipmentDetailsContainer.propTypes = {
-  //shipment: React.PropTypes.object.isRequired
-  //tracking: React.PropTypes.object.isRequired
+  shipment: React.PropTypes.object.isRequired
 };
 
 // Uncomment properties you need

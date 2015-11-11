@@ -1,12 +1,12 @@
-require('normalize.css');
-require('styles/App.css');
+import 'normalize.css';
+import 'styles/App.css';
 
-import React            from 'react';
-import createFragment   from 'react-addons-create-fragment';
-import Store            from '../stores/Store';
-import ShipmentActions  from '../actions/ShipmentActions';
+import React                    from 'react';
+import createFragment           from 'react-addons-create-fragment';
+import Store                    from '../stores/Store';
+import ShipmentActions          from '../actions/ShipmentActions';
 import ShipmentDetailsContainer from './ShipmentDetailsContainer/ShipmentDetailsContainer';
-import StatusBarContainer from './StatusBarContainer/StatusBarContainer';
+import StatusBarContainer       from './StatusBarContainer/StatusBarContainer';
 import TrackingDetailsContainer from './TrackingDetailsContainer/TrackingDetailsContainer';
 
 
@@ -33,10 +33,6 @@ class AppComponent extends React.Component {
       apiKey: this._getApiKey()
     };
   }
-
-  // componentWillMount () {
-  //   Store.addChangeListener(this._onChange.bind(this));
-  // }
 
   componentDidMount() {
     ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
@@ -66,11 +62,11 @@ class AppComponent extends React.Component {
         <img src={yeomanImage} alt="Yeoman Generators"/>
         <div className="notice">{this.state.apiKey} <code>src/components/Main.js</code> {this.state.shipmentId} Alex C Hawkins</div>
         <p>allala</p>
-        <StatusBarContainer status = {this.state.shipment[0].details.status} />
+        <StatusBarContainer status={this.state.shipment[0].details.status} />
         <p>allala</p>
-        <ShipmentDetailsContainer {...this.state.shipment[0]} />
+        <ShipmentDetailsContainer shipment={this.state.shipment[0]} />
         <p>allala</p>
-        <TrackingDetailsContainer {...this.state.tracking[0]}/>
+        <TrackingDetailsContainer tracking={this.state.tracking[0]}/>
       </div>
     );
   }
