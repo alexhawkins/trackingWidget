@@ -68,7 +68,7 @@ class AppComponent extends React.Component {
         <img src={yeomanImage} alt="Yeoman Generators"/>
         <div className="notice">{this.state.apiKey} <code>src/components/Main.js</code> {this.state.shipmentId} Alex C Hawkins</div>
         <p>allala</p>
-        <StatusBarContainer {...this.state.shipment[0]} />
+        <StatusBarContainer status = {this.state.shipment[0].details.status} />
         <p>allala</p>
         <ShipmentDetailsContainer {...this.state.shipment[0]} {...this.state.tracking[0]}/>
       </div>

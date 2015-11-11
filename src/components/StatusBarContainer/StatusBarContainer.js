@@ -6,10 +6,10 @@ require('styles//StatusBarContainer.scss');
 
 class StatusBarContainer extends React.Component {
   render() {
-    console.log('Status Bar Container', this.props.details);
+
     return (
       <div className="StatusBar-component">
-        {this.props.details.bol}
+        {this.props.status}
       </div>
     );
   }
@@ -18,7 +18,7 @@ class StatusBarContainer extends React.Component {
 StatusBarContainer.displayName = 'StatusBarContainer';
 
 // Uncomment properties you need
-// StatusBarContainer.propTypes = {};
+StatusBarContainer.propTypes = {status: React.PropTypes.string};
 // StatusBarContainer.defaultProps = {};
 
 
