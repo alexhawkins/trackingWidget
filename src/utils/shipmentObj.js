@@ -66,6 +66,25 @@ var ShippingObj = {
           "xid": "YFUR-15-BE23CAB",
           "value": 0,
           "description": "Louie Cabinet"
+        },
+        {
+          "id": 255090,
+          "product_sku": null,
+          "product_sku_packing_code": null,
+          "item_name": "External Product SKU",
+          "dimensions": {
+            "length": 65,
+            "width": 40,
+            "height": 48,
+            "weight": 183,
+            "volume": 72.2222222222222,
+            "density": 2.53
+          },
+          "freight_class": "300",
+          "nmfc": "",
+          "xid": "YFUR-15-BE23CAB",
+          "value": 0,
+          "description": "Large Pillow Case"
         }
       ],
       "materials": [],

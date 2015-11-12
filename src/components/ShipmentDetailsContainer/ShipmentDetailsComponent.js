@@ -10,7 +10,6 @@ import mxdImage from '../../images/mxd.png';
 class ShipmentDetailsComponent extends React.Component {
   constructor(props) {
     super(props);
-    console.log('PROPS SHIP', props.shipment);
   }
 
   getItems(){
@@ -28,25 +27,26 @@ class ShipmentDetailsComponent extends React.Component {
     let items = this.getItems();
     return (
       <div className="shipmentdetails-component">
-        <h3 className="shipmentdetails-carrier">Carrier: {details.carrier_friendly_name}
-          <span><img src={mxdImage} alt="MXD Group"/></span>
-        </h3>
+        <div className="shipmentdetails-image"><img src={mxdImage || ''} alt="MXD Group"/></div>
+        <h4>Carrier:
+          <span className="shipmentdetails-carrier"> {details.carrier_friendly_name}</span>
+        </h4>
         <div>
-          <h3>Tracking:
+          <h4>Tracking:
             <span className="shipmentdetails-tracking-number"> {details.tracking_number}</span>
-        </h3>
+        </h4>
         </div>
         <div>
-          <h3>Destination:&nbsp;
+          <h4>Destination:&nbsp;
           <span className="shipmentdetails-delivery-address">
             {delivery.address.city}, &nbsp;
             {delivery.address.state} &nbsp;
             {delivery.address.zip}
           </span>
-          </h3>
+          </h4>
         </div>
         <div className="shipmentdetails-items">
-          <h3>Items: </h3>
+          <h4>Items: </h4>
           <ul>{items}</ul>
         </div>
       </div>

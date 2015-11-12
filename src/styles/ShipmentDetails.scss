@@ -4,17 +4,18 @@
   border-radius: 3px;
   padding: 15px 25px 25px 25px;
 	margin-top: 15px;
-  .shipmentdetails-carrier{
-    display:inline-block;
-    vertical-align:top;
-  }
-  li {
-    list-style-type: none;
-    list-style-position: 0;
+  .shipmentdetails-carrier, .shipmentdetails-delivery-address, .shipmentdetails-tracking-number{
+    font-weight: 200;
+    padding-left: 5px;
   }
   .shipmentdetails-item{
-
+    list-style-type: none;
+    font-weight: 200;
   }
+  .shipmentdetails-image {
+    margin-top: 15px;
+  }
+
 }
 
 

@@ -13,10 +13,10 @@ class ItemComponent extends React.Component {
   render() {
     return (
       <div className="item-component">
-        {this.props.item.description}&nbsp;
-        {this.props.item.dimensions.length}&nbsp;x&nbsp;
-        {this.props.item.dimensions.height}&nbsp;x&nbsp;
-        {this.props.item.dimensions.width}&nbsp;x&nbsp;
+        {this.props.item.description},&nbsp;
+        {this.props.item.dimensions.length}&nbsp;in.&nbsp;x&nbsp;
+        {this.props.item.dimensions.height}&nbsp;in.&nbsp;x&nbsp;
+        {this.props.item.dimensions.width}&nbsp;in.,&nbsp;
         {this.props.item.dimensions.weight}&nbsp;lbs.
       </div>
     );

@@ -20,6 +20,7 @@ class TrackingDetailsContainer extends React.Component {
       let updates = this.getStatusUpdates();
       return (
         <div className="trackingContainer">
+          <div className="statusupdate-title">Status Updates</div>
           <ul>{updates}</ul>
         </div>
       );

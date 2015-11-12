@@ -1,5 +1,11 @@
 .shipmentdetailscontainer {
-  margin: 10px 7.5px 35px 8.2%;
-  flex: 40%;
+  margin: 10px 8.2% 35px 8.2%;
+  flex: 100%;
 }
 
+@media all and (min-width: 1200px) {
+  .shipmentdetailscontainer {
+    margin: 10px 7.5px 35px 8.2%;
+    flex: 40%;
+  }
+}
