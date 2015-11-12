@@ -1,3 +1,18 @@
-.trackingdetailscontainer-component {
-  border: 1px dashed #f00;
+.trackingContainer {
+  margin: 10px 8.2% 35px 7.5px;
+  flex: 40%;
+  li {
+    background-color: white;
+    list-style-type: none;
+    margin: 0 0 15px 0;
+  }
+  li:first-child{
+    background-color: #f1f1f1;
+  }
+  li:last-child{
+    margin-bottom: 0;
+  }
+  ul{
+    margin: 0;
+  }
 }

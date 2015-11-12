@@ -1,12 +1,12 @@
 'use strict';
 
 import React from 'react';
-import'styles//TrackingStatusContainer.scss';
+import'styles//TrackingStatus.scss';
 
 class TrackingStatusContainer extends React.Component {
   render() {
     return (
-      <div className="trackingstatuscontainer-component">
+      <div className="trackingstatus-component">
       </div>
     );
   }

@@ -2,16 +2,11 @@ import 'normalize.css';
 import 'styles/App.css';
 
 import React                    from 'react';
-import createFragment           from 'react-addons-create-fragment';
 import Store                    from '../stores/Store';
 import ShipmentActions          from '../actions/ShipmentActions';
 import ShipmentDetailsContainer from './ShipmentDetailsContainer/ShipmentDetailsContainer';
 import StatusBarContainer       from './StatusBarContainer/StatusBarContainer';
 import TrackingDetailsContainer from './TrackingDetailsContainer/TrackingDetailsContainer';
-
-
-let yeomanImage = require('../images/yeoman.png');
-
 
 var src = decodeURIComponent(document.getElementById("sh-tracking-widget").children[0].src);
 
@@ -58,14 +53,9 @@ class AppComponent extends React.Component {
   render() {
     if (!this.state.shipment[0] && !this.state.tracking[0]) return <div>Loading ...</div>;
     return (
-      <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generators"/>
-        <div className="notice">{this.state.apiKey} <code>src/components/Main.js</code> {this.state.shipmentId} Alex C Hawkins</div>
-        <p>allala</p>
+      <div className="main">
         <StatusBarContainer status={this.state.shipment[0].details.status} />
-        <p>allala</p>
         <ShipmentDetailsContainer shipment={this.state.shipment[0]} />
-        <p>allala</p>
         <TrackingDetailsContainer tracking={this.state.tracking[0]}/>
       </div>
     );

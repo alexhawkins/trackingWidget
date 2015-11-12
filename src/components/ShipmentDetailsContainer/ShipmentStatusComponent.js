@@ -7,12 +7,13 @@ class ShipmentStatusComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('PROPS SHIP', props);
   }
   render() {
+    let currentStatus = this.props.status.toUpperCase().replace("_"," ");
     return (
       <div className="shipmentstatus-component">
-        {this.props.status}
+        <p>Your Shipment is...</p>
+        <div className="shipmentstatus-current">{currentStatus}</div>
       </div>
     );
   }

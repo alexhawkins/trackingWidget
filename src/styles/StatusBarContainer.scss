@@ -1,3 +1,81 @@
-.statusbar-container {
-  border: 1px dashed #f00;
+.progress-crumb {
+	text-align: center;
+	width: 100%;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	position: relative;
+	display: table;
+	table-layout: fixed;
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		display: table-row;
+	}
+	li {
+		display: table-cell;
+		font-size: 12px;
+		font-weight: 400;
+	}
+	li:before {
+		background-color: #e7e7e7;
+		content: "";
+		height: 2px;
+		display: block;
+		margin-bottom: -7px;
+		position: relative;
+		z-index: 0;
+	}
+	li:first-child:before {
+		left: 50%;
+	}
+	li:last-child:before {
+		left: -50%;
+	}
+	.status {
+		position: absolute;
+		text-align: right;
+		height: 2px;
+		background-color: #b9dc8c;
+		margin-left: 10%;
+		z-index: 1;
+		-webkit-transition: width 1s ease;
+		transition: width 1s ease;
+		opacity: 0.5;
+		filter: alpha(opacity=50);
+	}
+	.ball {
+		display: inline-block;
+		background-color: #e7e7e7;
+		height: 13px;
+		width: 13px;
+		border-radius: 10px;
+		position: relative;
+		z-index: 2;
+		border: 1px solid #fff;
+	}
+	.ball.active {
+		background-color: #b9dc8c;
+	}
+	.ball.latest {
+		background-color: hsla(86, 53%, 51%, 1);
+		-webkit-animation: bounce .5s;
+		animation: bounce .5s;
+		-webkit-animation-delay: .7s;
+		animation-delay: .7s;
+		-webkit-animation-fill-mode: forwards;
+		animation-fill-mode: forwards;
+	}
+	p{
+		font-size: 14px;
+		font-weight: 500;
+	}
+	p.default{
+		color: #d7d7d7;
+	}
+	p.latest {
+		color: #000000;
+	}
+
 }
+
