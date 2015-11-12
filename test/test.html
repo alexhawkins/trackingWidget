@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>The HTML5 Herald</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="sh-tracking-widget">
+        <script data-version='v1' data-widget-id='dotAndBo' id='shiphawk-embedder-id' type='text/javascript'>
+            (function () {
+                function async_load() {
+                    var s = document.createElement('script'),
+                            payloadURL,
+                            embedder,
+                            shipmentID,
+                            apiKey,
+                            carrier,
+                            trackingNum;
+
+                    /********************************************************
+                     * set custom vars, set to an empty string if not using var */
+
+                    shipmentID = '1070430';
+                    apiKey = 'e04bb36e4633aabf07a9e94374ace7e0';
+                    carrier = '';
+                    trackingNum = '';
+
+                    /********************************************************/
+
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    //payloadURL = 'assets/app.js';
+                    payloadURL = 'https://s3-us-west-1.amazonaws.com/shiphawk/app.js';
+                    s.src = payloadURL + '?' + encodeURIComponent('token=' + apiKey + '&' + 'id=' + shipmentID + '&' + 'carier=' + carrier + 'tracking=' + trackingNum);
+                    embedder = document.getElementById('shiphawk-embedder-id');
+                    embedder.parentNode.insertBefore(s, embedder);
+                }
+
+                if (window.attachEvent)
+                    window.attachEvent('onload', async_load);
+                else
+                    window.addEventListener('load', async_load, false);
+            })();
+        </script>
+    </div>
+</body>
+</html>

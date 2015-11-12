@@ -43,11 +43,11 @@ class AppComponent extends React.Component {
   }
 
   _getApiKey() {
-    return src.split("token=")[1].split("&")[0] || null;
+    return unescape(src.split("token=")[1].split("&")[0]);
   }
 
   _getShipmentID() {
-    return src.split("id=")[1].split("&")[0] || null;
+    return unescape(src.split("id=")[1].split("&")[0]);
   }
 
   render() {

@@ -12,7 +12,6 @@
 <body>
   <div id="app">APPLICATION CONTENT</div>
 
-  <script>__REACT_DEVTOOLS_GLOBAL_HOOK__ = parent.__REACT_DEVTOOLS_GLOBAL_HOOK__</script>
   <div id="sh-tracking-widget">
     <script data-version='v1' data-widget-id='dotAndBo' id='shiphawk-embedder-id' type='text/javascript'>
       (function() {
@@ -37,7 +36,8 @@
 
           s.type = 'text/javascript';
           s.async = true;
-          payloadURL = 'assets/app.js';
+          //payloadURL = 'assets/app.js';
+          payloadURL = 'https://s3-us-west-1.amazonaws.com/shiphawk/app.js';
           s.src = payloadURL + '?' + encodeURIComponent('token=' + apiKey + '&' + 'id=' + shipmentID + '&' + 'carier=' + carrier + 'tracking=' + trackingNum);
           embedder = document.getElementById('shiphawk-embedder-id');
           embedder.parentNode.insertBefore(s, embedder);
