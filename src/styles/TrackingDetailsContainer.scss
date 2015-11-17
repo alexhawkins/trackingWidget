@@ -1,38 +1,42 @@
 .trackingContainer {
-  margin: 10px 8.2% 35px 8.2%;
-  flex: 100%;
+  margin: 10px 8.2% 35px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 100%;
+  -ms-flex: 1 100%;
+  flex: 1 100%;
   li {
     background-color: white;
     list-style-type: none;
-    margin: 0 0 15px 0;
+    margin: 0 0 15px;
   }
-  li:first-child{
+  li:first-child {
     background-color: #f1f1f1;
   }
-  li:last-child{
+  li:last-child {
     margin-bottom: 0;
   }
-  ul{
+  ul {
     margin-left: -40px;
   }
-  .statusupdate-title{
-    margin: 0 0 15px 0;
+  .statusupdate-title {
+    margin: 0 0 15px;
     color: hsla(86, 53%, 51%, 1);
     font-weight: 500;
     font-size: 18px;
   }
 }
-
 @media all and (min-width: 1200px) {
   .trackingContainer {
     margin: 10px 8.2% 35px 7.5px;
-    flex: 40%;
-    ul{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 40%;
+    -ms-flex: 1 40%;
+    flex: 1 40%;
+    ul {
       margin: 0;
     }
-    .statusupdate-title{
+    .statusupdate-title {
       margin: 0 0 15px 40px;
     }
   }
-
 }

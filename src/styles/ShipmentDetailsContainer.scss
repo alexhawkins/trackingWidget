@@ -1,11 +1,16 @@
 .shipmentdetailscontainer {
-  margin: 10px 8.2% 35px 8.2%;
-  flex: 100%;
+  margin: 10px 8.2% 35px;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 100%;
+  -ms-flex: 1 100%;
+  flex: 1 100%;
 }
-
 @media all and (min-width: 1200px) {
   .shipmentdetailscontainer {
     margin: 10px 7.5px 35px 8.2%;
-    flex: 40%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 40%;
+    -ms-flex: 1 40%;
+    flex: 1 40%;
   }
 }

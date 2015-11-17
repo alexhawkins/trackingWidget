@@ -10,7 +10,9 @@ class TrackingDetailsContainer extends React.Component {
     }
 
     getStatusUpdates(){
-      let updates = this.props.tracking.status_updates.reverse();
+      let updates = this.props.tracking.status_updates.sort((a, b) => {
+        return a.time - b.time;
+      }).reverse();
       return updates.map((update, index) => {
           return (<li key={index}><StatusUpdate status={update} /></li>);
       });
