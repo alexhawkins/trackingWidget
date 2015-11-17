@@ -5,8 +5,6 @@ import Item from './ItemComponent';
 
 import 'styles//ShipmentDetails.scss';
 
-import mxdImage from '../../images/mxd.png';
-
 class ShipmentDetailsComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +23,11 @@ class ShipmentDetailsComponent extends React.Component {
     let details = this.props.shipment.details;
     let delivery = this.props.shipment.delivery;
     let items = this.getItems();
+    let carrier = details.carrier_friendly_name.toLowerCase().split(' ').join('_') + '.png';
+    let imageUrl = 'https://s3-us-west-1.amazonaws.com/shiphawk/src/images/' + carrier;
     return (
       <div className="shipmentdetails-component">
-        <div className="shipmentdetails-image"><img src={mxdImage || ''} alt="MXD Group"/></div>
+        <div className="shipmentdetails-image"><img src={imageUrl} alt={details.carrier_friendly_name}/></div>
         <h4>Carrier:
           <span className="shipmentdetails-carrier"> {details.carrier_friendly_name}</span>
         </h4>
