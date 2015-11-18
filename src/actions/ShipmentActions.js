@@ -16,6 +16,9 @@ var shipmentAndTrackingCallback = (shipRes, trackRes) => {
 var ShipmentActions = {
   getShipmentAndTracking: (shipmentId, apiKey) => {
     ShipHawkApi.getShipment(shipmentId, apiKey, shipmentAndTrackingCallback);
+  },
+  getShipmentFromTracking: (trackingNumber, carrierCode, apiKey) => {
+    ShipmentActions.getShipmentFromTracking(trackingNumber, carrierCode, apiKey, shipmentAndTrackingCallback);
   }
 };
 

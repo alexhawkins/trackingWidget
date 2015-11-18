@@ -21,11 +21,10 @@
           /********************************************************
           * set custom vars, set to an empty string if not using var */
 
-          shipmentID = '1069967';
+          //shipmentID = '1069967';
           apiKey = 'e04bb36e4633aabf07a9e94374ace7e0';
-          carrier = '';
-          trackingNum = '';
-
+          carrier_code = 'mxd';
+          trackingNum = '1175808001';
           /********************************************************/
 
           s.type = 'text/javascript';
@@ -37,7 +36,7 @@
               'token=' + apiKey
               + '&' + 'id='
               + shipmentID
-              + '&' + 'carier='
+              + '&' + 'carier_code='
               + carrier + 'tracking='
               + trackingNum);
           embedder = document.getElementById('shiphawk-embedder-id');

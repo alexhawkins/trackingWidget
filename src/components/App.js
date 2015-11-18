@@ -25,12 +25,15 @@ class AppComponent extends React.Component {
       tracking: Store.getTracking(),
       shipment: Store.getShipment(),
       shipmentId: this._getShipmentID(),
+      trackingNumber: this._getTrackingNum(),
+      carrierCode: this._getCarrierCode(),
       apiKey: this._getApiKey()
     };
   }
 
   componentDidMount() {
     ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
+    ShipmentActions.getShipmentFromTracking(this.state.trackingNumber, this.state.carrierCode, this.state.apiKey);
     Store.addChangeListener(this._onChange.bind(this));
   }
 
@@ -48,6 +51,14 @@ class AppComponent extends React.Component {
 
   _getShipmentID() {
     return unescape(src.split("id=")[1].split("&")[0]);
+  }
+
+  _getTrackingNum() {
+    return unescape(src.split("tracking=")[1].split("&")[0]);
+  }
+
+  _getCarrierCode() {
+    return unescape(src.split("carrier=")[1].split("&")[0]);
   }
 
   render() {

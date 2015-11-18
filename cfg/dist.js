@@ -12,7 +12,7 @@ var config = _.merge({
   cache: false,
   devtool: 'sourcemap',
   plugins: [
-    // new webpack.optimize.DedupePlugin(),
+    //new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     }),
