@@ -8,6 +8,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
+
 <body>
   <div id="app"></div>
   <div id="sh-tracking-widget">
@@ -24,9 +25,8 @@
 
           s.type = 'text/javascript';
           s.async = true;
-          payloadURL = 'assets/app.js';
-          //payloadURL = 'https://s3-us-west-1.amazonaws.com/shiphawk/dist/assets/app.js';
-          s.src =  payloadURL + '?' + encodeURIComponent('carrier=' + carrier_code + '&' + 'tracking=' + tracking_number);
+          payloadURL = 'https://s3-us-west-1.amazonaws.com/shiphawk/dist/assets/app.js';
+          s.src = payloadURL + '?' + encodeURIComponent('carrier=' + carrier_code + '&' + 'tracking=' + tracking_number);
           embedder = document.getElementById('shiphawk-embedder-id');
           embedder.parentNode.insertBefore(s, embedder);
         }
@@ -38,4 +38,5 @@
     </script>
   </div>
 </body>
+
 </html>

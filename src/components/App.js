@@ -8,7 +8,7 @@ import ShipmentDetailsContainer from './ShipmentDetailsContainer/ShipmentDetails
 import StatusBarContainer       from './StatusBarContainer/StatusBarContainer';
 import TrackingDetailsContainer from './TrackingDetailsContainer/TrackingDetailsContainer';
 
-var src = decodeURIComponent(document.getElementById("sh-tracking-widget").children[0].src);
+var src = decodeURIComponent(document.getElementById('sh-tracking-widget').children[0].src);
 
 class AppComponent extends React.Component {
   constructor(props) {
@@ -39,15 +39,17 @@ class AppComponent extends React.Component {
   }
 
   _getTrackingNum() {
-    return unescape(src.split("tracking=")[1].split("&")[0]);
+    return unescape(src.split('tracking=')[1].split('&')[0]);
   }
 
   _getCarrierCode() {
-    return unescape(src.split("carrier=")[1].split("&")[0]);
+    return unescape(src.split('carrier=')[1].split('&')[0]);
   }
-
+  
   render() {
-    if (!this.state.shipment[0]) return <div>Loading ...</div>;
+    if (!this.state.shipment[0]) return <div>
+      Loading ...
+    </div>;
     return (
       <div className="main">
         <StatusBarContainer status={this.state.shipment[0].status} />

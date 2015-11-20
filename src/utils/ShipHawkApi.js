@@ -1,7 +1,4 @@
-import shipmentObj from '../utils/shipmentObj';
-import trackingObj from '../utils/trackingObj';
 import axios from 'axios';
-
 
 var ShipHawkApi = {
 

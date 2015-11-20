@@ -3,7 +3,6 @@
 import React from 'react';
 import Ball  from './BallComponent';
 import 'styles//StatusBarContainer.scss';
-import classNames from 'classnames';
 
 class StatusBarContainer extends React.Component {
   constructor(props) {
@@ -13,7 +12,7 @@ class StatusBarContainer extends React.Component {
   render() {
 
     let statuses = {'ORDERED': 0, 'IN PREP': 1, 'READY FOR CARRIER' : 2, 'IN TRANSIT': 3, 'DELIVERED': 4};
-    let currentStatus = this.props.status.toUpperCase().replace("_"," ");
+    let currentStatus = this.props.status.toUpperCase().replace('_',' ');
     let widthStyle = {width: statuses[currentStatus] * 20 + '%'};
 
     return (

@@ -1,6 +1,6 @@
-import AppDispatcher from "../dispatcher/AppDispatcher";
-import AppConstants from "../constants/AppConstants";
-import ShipHawkApi from "../utils/ShipHawkApi";
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import AppConstants from '../constants/AppConstants';
+import ShipHawkApi from '../utils/ShipHawkApi';
 
 var ActionTypes = AppConstants.ActionTypes;
 

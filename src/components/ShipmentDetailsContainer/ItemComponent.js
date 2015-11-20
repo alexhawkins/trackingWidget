@@ -1,7 +1,4 @@
-'use strict';
-
 import React from 'react';
-
 import 'styles//Item.scss';
 
 class ItemComponent extends React.Component {

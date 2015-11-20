@@ -2,7 +2,6 @@
 
 import React from 'react';
 import classNames from 'classnames';
-
 import 'styles//Ball.scss';
 
 class BallComponent extends React.Component {
@@ -25,7 +24,8 @@ class BallComponent extends React.Component {
 
     return (
       <div>
-        <div className={ballClass}></div>
+        <div className={ballClass}>
+        </div>
         <p className={ballNameClass}>
           {this.props.defaultStatus}
         </p>
