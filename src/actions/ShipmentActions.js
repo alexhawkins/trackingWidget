@@ -5,20 +5,16 @@ import ShipHawkApi from "../utils/ShipHawkApi";
 var ActionTypes = AppConstants.ActionTypes;
 
 
-var shipmentAndTrackingCallback = (shipRes, trackRes) => {
+var shipmentAndTrackingCallback = (shipRes) => {
   AppDispatcher.dispatch({
     type: ActionTypes.GET_SHIPMENT_AND_TRACKING,
-    shipment: shipRes,
-    tracking: trackRes
+    shipment: shipRes
   });
 };
 
 var ShipmentActions = {
-  getShipmentAndTracking: (shipmentId, apiKey) => {
-    ShipHawkApi.getShipment(shipmentId, apiKey, shipmentAndTrackingCallback);
-  },
-  getShipmentFromTracking: (trackingNumber, carrierCode, apiKey) => {
-    ShipmentActions.getShipmentFromTracking(trackingNumber, carrierCode, apiKey, shipmentAndTrackingCallback);
+  getShipmentFromTracking: (trackingNumber, carrierCode) => {
+    ShipHawkApi.getShipmentFromTracking(trackingNumber, carrierCode, shipmentAndTrackingCallback);
   }
 };
 

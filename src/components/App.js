@@ -10,10 +10,6 @@ import TrackingDetailsContainer from './TrackingDetailsContainer/TrackingDetails
 
 var src = decodeURIComponent(document.getElementById("sh-tracking-widget").children[0].src);
 
-//var carrier = carrier ? src.split("carrier=")[1].split("&")[0] : null;
-//var tracking = src.split("tracking=")[1].split("&")[0] || null;
-
-
 class AppComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -22,19 +18,16 @@ class AppComponent extends React.Component {
 
   getAppState() {
     return {
-      tracking: Store.getTracking(),
       shipment: Store.getShipment(),
-      shipmentId: this._getShipmentID(),
       trackingNumber: this._getTrackingNum(),
-      carrierCode: this._getCarrierCode(),
-      apiKey: this._getApiKey()
+      carrierCode: this._getCarrierCode()
     };
   }
 
   componentDidMount() {
-    ShipmentActions.getShipmentAndTracking(this.state.shipmentId, this.state.apiKey);
-    ShipmentActions.getShipmentFromTracking(this.state.trackingNumber, this.state.carrierCode, this.state.apiKey);
+    ShipmentActions.getShipmentFromTracking(this.state.trackingNumber, this.state.carrierCode);
     Store.addChangeListener(this._onChange.bind(this));
+    Store.emitChange();
   }
 
   componentWillUnmount () {
@@ -43,14 +36,6 @@ class AppComponent extends React.Component {
 
   _onChange() {
     this.setState(this.getAppState());
-  }
-
-  _getApiKey() {
-    return unescape(src.split("token=")[1].split("&")[0]);
-  }
-
-  _getShipmentID() {
-    return unescape(src.split("id=")[1].split("&")[0]);
   }
 
   _getTrackingNum() {
@@ -62,24 +47,16 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    if (!this.state.shipment[0] && !this.state.tracking[0]) return <div>Loading ...</div>;
+    if (!this.state.shipment[0]) return <div>Loading ...</div>;
     return (
       <div className="main">
-        <StatusBarContainer status={this.state.shipment[0].details.status} />
+        <StatusBarContainer status={this.state.shipment[0].status} />
         <ShipmentDetailsContainer shipment={this.state.shipment[0]} />
-        <TrackingDetailsContainer tracking={this.state.tracking[0]}/>
+        <TrackingDetailsContainer tracking={this.state.shipment[0]}/>
       </div>
     );
   }
 }
-
-
-
-
-//AppComponent.propTypes = {
-//  shipment: React.PropTypes.object.isRequired,
-//  tracking: React.PropTypes.object.isRequired
-//};
 
 
 export default AppComponent;

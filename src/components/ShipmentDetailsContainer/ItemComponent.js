@@ -12,7 +12,7 @@ class ItemComponent extends React.Component {
   render() {
     return (
       <div className="item-component">
-        {this.props.item.description},&nbsp;
+        {this.props.item.item_name || this.props.item.description},&nbsp;
         {this.props.item.dimensions.length}&nbsp;in.&nbsp;x&nbsp;
         {this.props.item.dimensions.height}&nbsp;in.&nbsp;x&nbsp;
         {this.props.item.dimensions.width}&nbsp;in.,&nbsp;

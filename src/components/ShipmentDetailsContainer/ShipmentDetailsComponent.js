@@ -20,28 +20,28 @@ class ShipmentDetailsComponent extends React.Component {
   }
 
   render() {
-    let details = this.props.shipment.details;
-    let delivery = this.props.shipment.delivery;
+    let shipment = this.props.shipment;
+    let delivery = shipment.delivery;
     let items = this.getItems();
-    let carrier = details.carrier_friendly_name.toLowerCase().split(' ').join('_') + '.png';
+    let carrier = shipment.carrier_name.toLowerCase().split(' ').join('_') + '.png';
     let imageUrl = 'https://s3-us-west-1.amazonaws.com/shiphawk/src/images/' + carrier;
     return (
       <div className="shipmentdetails-component">
-        <div className="shipmentdetails-image"><img src={imageUrl} alt={details.carrier_friendly_name}/></div>
+        <div className="shipmentdetails-image"><img src={imageUrl} alt={carrier}/></div>
         <h4>Carrier:
-          <span className="shipmentdetails-carrier"> {details.carrier_friendly_name}</span>
+          <span className="shipmentdetails-carrier"> {shipment.carrier_name}</span>
         </h4>
         <div>
           <h4>Tracking:
-            <span className="shipmentdetails-tracking-number"> {details.tracking_number}</span>
+            <span href={shipment.tracking_url || '#'} className="shipmentdetails-tracking-number"> {shipment.tracking_number}</span>
         </h4>
         </div>
         <div>
           <h4>Destination:&nbsp;
           <span className="shipmentdetails-delivery-address">
-            {delivery.address.city}, &nbsp;
-            {delivery.address.state} &nbsp;
-            {delivery.address.zip}
+            {delivery.city}, &nbsp;
+            {delivery.state} &nbsp;
+            {delivery.zip}
           </span>
           </h4>
         </div>

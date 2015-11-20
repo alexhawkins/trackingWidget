@@ -14,7 +14,7 @@ class ShipmentDetailsContainer extends React.Component {
     let shipment = this.props.shipment;
     return (
       <div className="shipmentdetailscontainer">
-        <ShipmentStatus status={shipment.details.status} />
+        <ShipmentStatus status={shipment.status} />
         <ShipmentDetails shipment={shipment}/>
       </div>
     );
